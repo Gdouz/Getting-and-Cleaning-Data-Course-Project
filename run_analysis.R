@@ -2,7 +2,7 @@
 library(plyr)
 library(dplyr)
 library(tidyr)
-setwd("C:\\Users\\14911\\Documents\\Statistics\\��ѡ��\\JHU\\���Ⲿ\\Getting and Cleaning Data\\Week 4\\UCI HAR Dataset")
+setwd("C:\\Users\\14911\\Documents\\Statistics\\ÑÐÑ¡¿Î\\JHU\\´íÌâ²¾\\Getting and Cleaning Data\\Week 4\\UCI HAR Dataset")
 
 ## ===Read in data===
 subject_test <- read.table("test\\subject_test.txt",sep="")
@@ -63,6 +63,9 @@ colnames(sExtxy_tt)[1] <- "subject"
 sExtxy_tt_ <- gather(sExtxy_tt, FEATURE, count, -subject,-tt,-activity)
 # Now variable names of the data set are: 
 # "subject", "tt", "activity", "FEATRUE", "count". 
+
 ## ===Q5===
+## From the data set in step 4, creates a second, independent tidy data set with the average of 
+## each variable for each activity and each subject.
 df <- ddply(sExtxy_tt_,.(subject,activity),summarize,mean=mean(count))
 write.table(df, file="df.txt", row.name=FALSE)
